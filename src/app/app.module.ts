@@ -1,23 +1,33 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AppComponent } from './app.component';
 
-// Firebase modules
+// Firebase main module
 import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
+
+// Firebase other modules
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { environment } from '../environments/environment';
+
+import { AppComponent } from './app.component';
 
 @NgModule({
+  declarations: [
+    AppComponent
+  ],
   imports: [
     BrowserModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig, 'ABook'), // Required for everything
-    AngularFirestoreModule, // Only required for database features
-    AngularFireAuthModule, // Only required for auth features,
-    AngularFireStorageModule // Only required for storage features
+    // Required for everything + optionly pass your app name instead 'my-app-name'
+    AngularFireModule.initializeApp(environment.firebaseConfig, 'ABook'),
+
+    AngularFirestoreModule,     // Only required for database features
+    AngularFireAuthModule,     // Only required for auth features,
+    AngularFireStorageModule   // Only required for storage features
+
   ],
-  declarations: [ AppComponent ],
-  bootstrap: [ AppComponent ]
+  providers: [],
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
